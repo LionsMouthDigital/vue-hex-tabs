@@ -4,7 +4,7 @@
     :id              = "tabPanelId"
     role             = "tabpanel"
     :aria-labelledby = "tabId"
-    :aria-hidden     = "!active.toString()"
+    :aria-hidden     = "(!active).toString()"
     v-show           = "active"
     :transition      = "transition"
   >
