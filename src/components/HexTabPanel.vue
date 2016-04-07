@@ -1,12 +1,12 @@
 <template>
   <li
-    class            = "tab-panel"
-    :id              = "tabPanelId"
-    role             = "tabpanel"
-    :aria-labelledby = "tabId"
-    :aria-hidden     = "(!active).toString()"
-    v-show           = "active"
-    :transition      = "transition"
+    class           = "tab-panel"
+    id              = "{{ tabPanelId }}"
+    role            = "tabpanel"
+    aria-labelledby = "{{ tabId }}"
+    aria-hidden     = "(this.$parent.$parent.activeTab !== this.index).toString()"
+    v-show          = "this.$parent.$parent.activeTab === this.index"
+    :transition     = "transition"
   >
     <slot></slot>
   </li>
@@ -14,15 +14,8 @@
 
 <script>
   export default {
-    ready() {
-      // Add a ref to easily access this component elsewhere.
-      this.$root.$refs[this.tabPanelId] = this;
-    },
-
     props: {
-      // This shows/hides the tab panel.
-      active:         Boolean,
-      ariaLabelledBy: String,
+      ariaLabelledby: String,
       id:             String,
     },
 
@@ -31,27 +24,23 @@
       index() {
         for (var i in this.$parent.$children) {
           if (this.$parent.$children[i].$el === this.$el) {
-            return i;
+            return +i + 1;
           }
         }
       },
 
       tabId() {
         // Allow the dev to override the `id`.
-        if (typeof this.id !== 'undefined') {
-          return this.id;
-        }
-
-        return this.$parent.tabs + '-' + this.index;
+        return (typeof this.ariaLabelledby !== 'undefined')
+          ? this.ariaLabelledby
+          : this.$parent.$parent.tabs + '-' + this.index;
       },
 
       tabPanelId() {
         // Allow the dev to override the `aria-labelledby`.
-        if (typeof this.ariaLabelledBy !== 'undefined') {
-          return this.ariaLabelledBy;
-        }
-
-        return this.$parent.tabPanels + '-' + this.index;
+        return (typeof this.id !== 'undefined')
+          ? this.id
+          : this.$parent.$parent.tabPanels + '-' + this.index;
       },
 
       transition() {

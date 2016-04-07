@@ -1,51 +1,122 @@
 <template>
   <div id="app">
-    <hex-tabs tabs="tabs-sample" tab-panels="panels-sample">
-      <hex-tab active>One</hex-tab>
-      <hex-tab>Two</hex-tab>
-      <hex-tab>Three</hex-tab>
+    <h1>Hex Tabs</h1>
+    <hex-tabs tabs="tabs" tab-panels="tab-panels" :active="2">
+      <hex-tab-list>
+        <hex-tab>One</hex-tab>
+        <hex-tab>Two</hex-tab>
+        <hex-tab>Three</hex-tab>
+      </hex-tab-list>
+
+      <hex-tab-panel-list>
+        <hex-tab-panel>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+          </p>
+        </hex-tab-panel>
+
+        <hex-tab-panel>
+          <p>
+            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </hex-tab-panel>
+
+        <hex-tab-panel>
+          <p>
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </hex-tab-panel>
+      </hex-tab-panel-list>
     </hex-tabs>
 
-    <hex-tab-panels tabs="tabs-sample" tab-panels="panels-sample">
-      <hex-tab-panel active>
-        <h3>One</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua.
-        </p>
-      </hex-tab-panel>
 
-      <hex-tab-panel>
-        <h3>Two</h3>
-        <p>
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat.
-        </p>
-      </hex-tab-panel>
+    <h2>With pager buttons</h2>
+    <hex-tabs  tabs="tabs-pager" tab-panels="tab-panels-pager" v-ref:tabs-pager>
+      <hex-tab-list>
+        <hex-tab>One</hex-tab>
+        <hex-tab>Two</hex-tab>
+        <hex-tab>Three</hex-tab>
+      </hex-tab-list>
 
-      <hex-tab-panel>
-        <h3>Three</h3>
-        <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur.
-        </p>
-      </hex-tab-panel>
-    </hex-tab-panels>
+      <hex-tab-panel-list>
+        <hex-tab-panel>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+          </p>
+        </hex-tab-panel>
+
+        <hex-tab-panel>
+          <p>
+            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </hex-tab-panel>
+
+        <hex-tab-panel>
+          <p>
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </hex-tab-panel>
+      </hex-tab-panel-list>
+    </hex-tabs>
+
+    <button @click="this.$refs.tabsPager.activeTab--">Prev</button>
+    <button @click="this.$refs.tabsPager.activeTab++">Next</button>
+
+
+    <h2>As a carousel</h2>
+    <hex-tabs  tabs="tabs-carousel" tab-panels="tab-panels-carousel" v-ref:tabs-carousel>
+      <hex-tab-panel-list>
+        <hex-tab-panel>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+          </p>
+        </hex-tab-panel>
+
+        <hex-tab-panel>
+          <p>
+            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </hex-tab-panel>
+
+        <hex-tab-panel>
+          <p>
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </hex-tab-panel>
+      </hex-tab-panel-list>
+    </hex-tabs>
+
+    <button @click="this.$refs.tabsCarousel.activeTab--">Prev</button>
+    <button @click="this.$refs.tabsCarousel.activeTab++">Next</button>
   </div>
 </template>
 
+
+
+
 <script>
-  import HexTabs      from './components/HexTabs.vue';
-  import HexTab       from './components/HexTab.vue';
-  import HexTabPanels from './components/HexTabPanels.vue';
-  import HexTabPanel  from './components/HexTabPanel.vue';
+  import HexTabs         from './components/HexTabs.vue'
+  import HexTabList      from './components/HexTabList.vue'
+  import HexTab          from './components/HexTab.vue'
+  import HexTabPanelList from './components/HexTabPanelList.vue'
+  import HexTabPanel     from './components/HexTabPanel.vue'
 
   export default {
     components: {
       HexTabs,
+      HexTabList,
       HexTab,
-      HexTabPanels,
-      HexTabPanel
+      HexTabPanelList,
+      HexTabPanel,
     }
   }
 </script>
