@@ -104,19 +104,15 @@
 
 
 <script>
-  import HexTabs         from './components/HexTabs.vue'
-  import HexTabList      from './components/HexTabList.vue'
-  import HexTab          from './components/HexTab.vue'
-  import HexTabPanelList from './components/HexTabPanelList.vue'
-  import HexTabPanel     from './components/HexTabPanel.vue'
+  import HexTabs from './Component.vue';
 
   export default {
     components: {
-      HexTabs,
-      HexTabList,
-      HexTab,
-      HexTabPanelList,
-      HexTabPanel,
+      HexTabs:         HexTabs.HexTabs,
+      HexTabList:      HexTabs.HexTabList,
+      HexTab:          HexTabs.HexTab,
+      HexTabPanelList: HexTabs.HexTabPanelList,
+      HexTabPanel:     HexTabs.HexTabPanel,
     }
-  }
+  };
 </script>

@@ -1,6 +1,7 @@
 {
   "name": "vue-hex-tabs",
   "description": "A Vue component for tabs in the Hex Framework from LionsMouth Digital.",
+  "main": "src/Component.vue",
   "author": "Curtis Blackwell <blackwell.curtis@gmail.com>",
   "maintainers": [
     {
