@@ -6,18 +6,6 @@
 
 <script>
   export default {
-    data() {
-      return {
-        activeTab: this.active,
-      };
-    },
-
-    watch: {
-      activeTab() {
-        this.activateTab(this.activeTab);
-      },
-    },
-
     props: {
       active: {
         type:    Number,
@@ -34,6 +22,18 @@
       tabs: {
         type:     String,
         required: true,
+      },
+    },
+
+    data() {
+      return {
+        activeTab: this.active,
+      };
+    },
+
+    watch: {
+      activeTab() {
+        this.activateTab(this.activeTab);
       },
     },
 
