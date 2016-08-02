@@ -4,7 +4,7 @@
     id              = "{{ tabPanelId }}"
     role            = "tabpanel"
     aria-labelledby = "{{ tabId }}"
-    aria-hidden     = "(this.$parent.$parent.activeTab !== this.index).toString()"
+    :aria-hidden    = "(this.$parent.$parent.activeTab !== this.index).toString()"
     v-show          = "this.$parent.$parent.activeTab === this.index"
     :transition     = "transition"
   >
