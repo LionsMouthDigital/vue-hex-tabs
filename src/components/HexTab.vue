@@ -33,14 +33,14 @@
         // Allow the dev to override the `id`.
         return (typeof this.id !== 'undefined')
           ? this.id
-          : this.$parent.$parent.tabs + '-' + this.index;
+          : 'tab-' + this.$parent.$parent._uid + '-' + this.index;
       },
 
       tabPanelId() {
         // Allow the dev to override the `aria-controls`.
         return (typeof this.ariaControls !== 'undefined')
           ? this.ariaControls
-          : this.$parent.$parent.tabPanels + '-' + this.index;
+          : 'panel-' + this.$parent.$parent._uid + '-' + this.index;
       },
     },
   }
