@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <ol class="tab-panel-list" v-if="json.length">
-      <hex-tab-panel v-for="item in jsonData">
-        {{{ item.markup }}}
-      </hex-tab-panel>
-    </ol>
+  <ol class="tab-panel-list" v-if="json.length">
+    <hex-tab-panel v-for="item in jsonData">
+      {{{ item.markup }}}
+    </hex-tab-panel>
+  </ol>
 
-    <ol class="tab-panel-list" v-else>
-      <slot></slot>
-    </ol>
-  </div>
+  <ol class="tab-panel-list" v-else>
+    <slot></slot>
+  </ol>
 </template>
 
 <script>
