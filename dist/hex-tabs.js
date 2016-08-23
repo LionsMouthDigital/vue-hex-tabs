@@ -49,35 +49,7 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":undefined,"vue-hot-reload-api":undefined}],3:[function(_dereq_,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-
-var HexTab = _dereq_('./HexTab.vue');
-
-exports.default = {
-  components: {
-    HexTab: HexTab
-  },
-
-  props: {
-    json: {
-      type: String,
-      default: ''
-    }
-  },
-
-  computed: {
-    jsonData: function jsonData() {
-      return this.json.length ? JSON.parse(this.json.replace(/\n/g, '')) : '';
-    }
-  }
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ol class=\"tab-list\" role=\"tablist\" v-if=\"json.length\">\n  <hex-tab v-for=\"item in jsonData\">\n    {{{ item.markup }}}\n  </hex-tab>\n</ol>\n\n<ol class=\"tab-list\" role=\"tablist\" v-else=\"\">\n  <slot></slot>\n</ol>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ol class=\"tab-list\" role=\"tablist\">\n  <slot></slot>\n</ol>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
@@ -89,7 +61,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./HexTab.vue":2,"vue":undefined,"vue-hot-reload-api":undefined}],4:[function(_dereq_,module,exports){
+},{"vue":undefined,"vue-hot-reload-api":undefined}],4:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -121,7 +93,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<li class=\"tab-panel\" id=\"{{ tabPanelId }}\" role=\"tabpanel\" aria-labelledby=\"{{ tabId }}\" :aria-hidden=\"(this.$parent.$parent.activeTab !== this.index).toString()\" v-show=\"this.$parent.$parent.activeTab === this.index\" :transition=\"transition\">\n  <slot></slot>\n</li>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<li class=\"tab-panel\" id=\"{{ tabPanelId }}\" role=\"tabpanel\" aria-labelledby=\"{{ tabId }}\" aria-hidden=\"(this.$parent.$parent.activeTab !== this.index).toString()\" v-show=\"this.$parent.$parent.activeTab === this.index\" :transition=\"transition\">\n  <slot></slot>\n</li>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
@@ -134,36 +106,18 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":undefined,"vue-hot-reload-api":undefined}],5:[function(_dereq_,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-
-var HexTabPanel = _dereq_('./HexTabPanel.vue');
-
 exports.default = {
-  components: {
-    HexTabPanel: HexTabPanel
-  },
-
   props: {
-    effect: String,
-    json: {
-      type: String,
-      default: ''
-    }
-  },
-
-  computed: {
-    jsonData: function jsonData() {
-      return this.json.length ? JSON.parse(this.json.replace(/\n/g, '')) : '';
-    }
+    effect: String
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ol class=\"tab-panel-list\" v-if=\"json.length\">\n  <hex-tab-panel v-for=\"item in jsonData\">\n    {{{ item.markup }}}\n  </hex-tab-panel>\n</ol>\n\n<ol class=\"tab-panel-list\" v-else=\"\">\n  <slot></slot>\n</ol>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ol class=\"tab-panel-list\">\n  <slot></slot>\n</ol>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
@@ -175,7 +129,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./HexTabPanel.vue":4,"vue":undefined,"vue-hot-reload-api":undefined}],6:[function(_dereq_,module,exports){
+},{"vue":undefined,"vue-hot-reload-api":undefined}],6:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
