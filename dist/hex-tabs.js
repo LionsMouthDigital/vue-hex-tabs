@@ -28,10 +28,10 @@ exports.default = {
       }
     },
     tabId: function tabId() {
-      return typeof this.id !== 'undefined' ? this.id : 'tab-' + this.$parent.$parent._uid + '-' + this.index;
+      return typeof this.id !== 'undefined' ? this.id : this.$parent.$parent.tabs + '-' + this.index;
     },
     tabPanelId: function tabPanelId() {
-      return typeof this.ariaControls !== 'undefined' ? this.ariaControls : 'panel-' + this.$parent.$parent._uid + '-' + this.index;
+      return typeof this.ariaControls !== 'undefined' ? this.ariaControls : this.$parent.$parent.tabPanels + '-' + this.index;
     }
   }
 };
@@ -49,7 +49,35 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":undefined,"vue-hot-reload-api":undefined}],3:[function(_dereq_,module,exports){
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ol class=\"tab-list\" role=\"tablist\">\n  <slot></slot>\n</ol>\n"
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+
+var HexTab = _dereq_('./HexTab.vue');
+
+exports.default = {
+  components: {
+    HexTab: HexTab
+  },
+
+  props: {
+    json: {
+      type: String,
+      default: ''
+    }
+  },
+
+  computed: {
+    jsonData: function jsonData() {
+      return this.json.length ? JSON.parse(this.json.replace(/\n/g, '')) : '';
+    }
+  }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ol class=\"tab-list\" role=\"tablist\" v-if=\"json.length\">\n  <hex-tab v-for=\"item in jsonData\">\n    {{{ item.markup }}}\n  </hex-tab>\n</ol>\n\n<ol class=\"tab-list\" role=\"tablist\" v-else=\"\">\n  <slot></slot>\n</ol>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
@@ -61,7 +89,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":undefined,"vue-hot-reload-api":undefined}],4:[function(_dereq_,module,exports){
+},{"./HexTab.vue":2,"vue":undefined,"vue-hot-reload-api":undefined}],4:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -82,10 +110,10 @@ exports.default = {
       }
     },
     tabId: function tabId() {
-      return typeof this.ariaLabelledby !== 'undefined' ? this.ariaLabelledby : 'tab-' + this.$parent.$parent._uid + '-' + this.index;
+      return typeof this.ariaLabelledby !== 'undefined' ? this.ariaLabelledby : this.$parent.$parent.tabs + '-' + this.index;
     },
     tabPanelId: function tabPanelId() {
-      return typeof this.id !== 'undefined' ? this.id : 'panel-' + this.$parent.$parent._uid + '-' + this.index;
+      return typeof this.id !== 'undefined' ? this.id : this.$parent.$parent.tabPanels + '-' + this.index;
     },
     transition: function transition() {
       return this.$parent.effect;
@@ -126,10 +154,16 @@ exports.default = {
       type: String,
       default: ''
     }
+  },
+
+  computed: {
+    jsonData: function jsonData() {
+      return this.json.length ? JSON.parse(this.json.replace(/\n/g, '')) : '';
+    }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n  <ol class=\"tab-panel-list\" v-if=\"json.length\">\n    <hex-tab-panel v-for=\"item in jsonData\">\n      {{{ item.markup }}}\n    </hex-tab-panel>\n  </ol>\n\n  <ol class=\"tab-panel-list\" v-else=\"\">\n    <slot></slot>\n  </ol>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ol class=\"tab-panel-list\" v-if=\"json.length\">\n  <hex-tab-panel v-for=\"item in jsonData\">\n    {{{ item.markup }}}\n  </hex-tab-panel>\n</ol>\n\n<ol class=\"tab-panel-list\" v-else=\"\">\n  <slot></slot>\n</ol>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
@@ -147,34 +181,21 @@ if (module.hot) {(function () {  module.hot.accept()
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-
-var HexTabList = _dereq_('./HexTabList.vue');
-var HexTab = _dereq_('./HexTab.vue');
-var HexTabPanelList = _dereq_('./HexTabPanelList.vue');
-var HexTabPanel = _dereq_('./HexTabPanel.vue');
-
 exports.default = {
-  components: {
-    HexTabList: HexTabList,
-    HexTab: HexTab,
-    HexTabPanelList: HexTabPanelList,
-    HexTabPanel: HexTabPanel
-  },
-
   props: {
     active: {
       type: Number,
       default: 1
     },
 
-    tabs: {
-      type: String,
-      default: ''
-    },
     tabPanels: {
       type: String,
-      default: ''
+      required: true
+    },
+
+    tabs: {
+      type: String,
+      required: true
     }
   },
 
@@ -184,15 +205,6 @@ exports.default = {
     };
   },
 
-
-  computed: {
-    tabsData: function tabsData() {
-      return this.parseJSON(this.tabs);
-    },
-    tabPanelsData: function tabPanelsData() {
-      return this.parseJSON(this.tabPanels);
-    }
-  },
 
   watch: {
     activeTab: function activeTab() {
@@ -215,14 +227,11 @@ exports.default = {
       i = i < 1 ? last : i;
 
       this.activeTab = i;
-    },
-    parseJSON: function parseJSON(json) {
-      return json.length ? JSON.parse(json.replace(/\n/g, '')) : [];
     }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div>\n  <div class=\"tabs\" v-if=\"tabPanels.length\">\n    <hex-tab-list v-if=\"tabs.length\">\n      <hex-tab v-for=\"tab in tabsData\">{{{ tab.markup }}}</hex-tab>\n    </hex-tab-list>\n\n    <hex-tab-panel-list>\n      <hex-tab-panel v-for=\"tabPanel in tabPanelsData\">{{{ tabPanel.markup }}}</hex-tab-panel>\n    \n  </hex-tab-panel-list></div>\n\n  <div class=\"tabs\" v-else=\"\">\n    <slot></slot>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"tabs\">\n  <slot></slot>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
@@ -234,5 +243,5 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./HexTab.vue":2,"./HexTabList.vue":3,"./HexTabPanel.vue":4,"./HexTabPanelList.vue":5,"vue":undefined,"vue-hot-reload-api":undefined}]},{},[1])(1)
+},{"vue":undefined,"vue-hot-reload-api":undefined}]},{},[1])(1)
 });
