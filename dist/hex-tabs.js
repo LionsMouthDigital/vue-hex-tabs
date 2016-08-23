@@ -41,11 +41,10 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/curtisblackwell/Sites/hex/vue-hex-tabs/src/components/HexTab.vue"
   if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
+    hotAPI.createRecord("_v-53b3d47f", module.exports)
   } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-53b3d47f", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":undefined,"vue-hot-reload-api":undefined}],3:[function(_dereq_,module,exports){
@@ -54,11 +53,10 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/curtisblackwell/Sites/hex/vue-hex-tabs/src/components/HexTabList.vue"
   if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
+    hotAPI.createRecord("_v-6eda1ebd", module.exports)
   } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-6eda1ebd", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":undefined,"vue-hot-reload-api":undefined}],4:[function(_dereq_,module,exports){
@@ -93,16 +91,15 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<li class=\"tab-panel\" id=\"{{ tabPanelId }}\" role=\"tabpanel\" aria-labelledby=\"{{ tabId }}\" aria-hidden=\"(this.$parent.$parent.activeTab !== this.index).toString()\" v-show=\"this.$parent.$parent.activeTab === this.index\" :transition=\"transition\">\n  <slot></slot>\n</li>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<li class=\"tab-panel\" id=\"{{ tabPanelId }}\" role=\"tabpanel\" aria-labelledby=\"{{ tabId }}\" :aria-hidden=\"(this.$parent.$parent.activeTab !== this.index).toString()\" v-show=\"this.$parent.$parent.activeTab === this.index\" :transition=\"transition\">\n  <slot></slot>\n</li>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/curtisblackwell/Sites/hex/vue-hex-tabs/src/components/HexTabPanel.vue"
   if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
+    hotAPI.createRecord("_v-5fa330f5", module.exports)
   } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-5fa330f5", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":undefined,"vue-hot-reload-api":undefined}],5:[function(_dereq_,module,exports){
@@ -122,11 +119,10 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/curtisblackwell/Sites/hex/vue-hex-tabs/src/components/HexTabPanelList.vue"
   if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
+    hotAPI.createRecord("_v-023a5033", module.exports)
   } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-023a5033", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":undefined,"vue-hot-reload-api":undefined}],6:[function(_dereq_,module,exports){
@@ -141,6 +137,8 @@ exports.default = {
       type: Number,
       default: 1
     },
+
+    carousel: Boolean,
 
     tabPanels: {
       type: String,
@@ -185,16 +183,15 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"tabs\">\n  <slot></slot>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"tabs\">\n  <slot></slot>\n\n  <div class=\"carousel-pager\" v-if=\"carousel\">\n    <button @click=\"activeTab--\">Previous</button>\n    <button @click=\"activeTab++\">Next</button>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/curtisblackwell/Sites/hex/vue-hex-tabs/src/components/HexTabs.vue"
   if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
+    hotAPI.createRecord("_v-26725c84", module.exports)
   } else {
-    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-26725c84", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
 },{"vue":undefined,"vue-hot-reload-api":undefined}]},{},[1])(1)
