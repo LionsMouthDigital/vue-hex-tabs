@@ -1,6 +1,11 @@
 <template>
   <div class="tabs">
     <slot></slot>
+
+    <div class="carousel-pager" v-if="carousel">
+      <button @click="activeTab--">Previous</button>
+      <button @click="activeTab++">Next</button>
+    </div>
   </div>
 </template>
 
@@ -11,6 +16,8 @@
         type:    Number,
         default: 1,
       },
+
+      carousel: Boolean,
 
       // This gets used in `tabPanelId` in `tab.vue`.
       tabPanels: {
