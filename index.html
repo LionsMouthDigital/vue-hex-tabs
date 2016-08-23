@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>Hex Tabs</h1>
-    <hex-tabs :active="2">
+    <hex-tabs tabs="tabs" tab-panels="tab-panels" :active="2">
       <hex-tab-list>
         <hex-tab>One</hex-tab>
         <hex-tab>Two</hex-tab>
@@ -39,7 +39,7 @@
 
 
     <h2>With pager buttons</h2>
-    <hex-tabs v-ref:tabs-pager>
+    <hex-tabs  tabs="tabs-pager" tab-panels="tab-panels-pager" v-ref:tabs-pager>
       <hex-tab-list>
         <hex-tab>One</hex-tab>
         <hex-tab>Two</hex-tab>
@@ -75,7 +75,7 @@
 
 
     <h2>As a carousel</h2>
-    <hex-tabs v-ref:tabs-carousel>
+    <hex-tabs tabs="tabs-carousel" tab-panels="tab-panels-carousel" v-ref:tabs-carousel>
       <hex-tab-panel-list>
         <hex-tab-panel>
           <p>
@@ -101,19 +101,20 @@
     </hex-tabs>
 
 
-    <h2>Build via JSON</h2>
-    <hex-tabs
-      tabs = '[
+    <h2>Populate using JSON</h2>
+    <hex-tabs tabs="tabs" tab-panels="tab-panels" v-ref:json>
+      <hex-tab-list json='[
         { "markup": "One"   },
         { "markup": "Two"   },
         { "markup": "Three" }
-      ]'
-      tab-panels = '[
+      ]'>
+      </hex-tab-list>
+
+      <hex-tab-panel-list json='[
         {
           "markup": "<p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
           </p>"
         },
         {
@@ -124,13 +125,12 @@
         },
         {
           "markup": "<p>
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
           </p>"
         }
-      ]'
-      v-ref:json
-    >
+      ]'>
+      </hex-tab-panel-list>
     </hex-tabs>
 
     <button @click="this.$refs.json.activeTab--">Prev</button>

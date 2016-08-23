@@ -33,19 +33,19 @@
         // Allow the dev to override the `id`.
         return (typeof this.ariaLabelledby !== 'undefined')
           ? this.ariaLabelledby
-          : 'tab-' + this.$parent.$parent._uid + '-' + this.index;
+          : this.$parent.$parent.tabs + '-' + this.index;
       },
 
       tabPanelId() {
         // Allow the dev to override the `aria-labelledby`.
         return (typeof this.id !== 'undefined')
           ? this.id
-          : 'panel-' + this.$parent.$parent._uid + '-' + this.index;
+          : this.$parent.$parent.tabPanels + '-' + this.index;
       },
 
       transition() {
         return this.$parent.effect;
-      },
+      }
     },
   }
 </script>

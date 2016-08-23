@@ -28,5 +28,11 @@
         default: '',
       },
     },
+
+    computed: {
+      jsonData() {
+        return this.json.length ? JSON.parse(this.json.replace(/\n/g, '')) : '';
+      }
+    },
   }
 </script>
