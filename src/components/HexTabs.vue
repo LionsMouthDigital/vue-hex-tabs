@@ -1,11 +1,6 @@
 <template>
   <div class="tabs">
     <slot></slot>
-
-    <div class="carousel-pager" v-if="carousel">
-      <button @click="activeTab--">Previous</button>
-      <button @click="activeTab++">Next</button>
-    </div>
   </div>
 </template>
 

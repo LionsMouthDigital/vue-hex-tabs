@@ -114,7 +114,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<ol class=\"tab-panel-list\">\n  <slot></slot>\n</ol>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"tab-panel-list\">\n  <ol>\n    <slot></slot>\n  </ol>\n\n  <div class=\"carousel-pager\" v-if=\"$parent.carousel\">\n    <button @click=\"$parent.activeTab--\">Previous</button>\n    <button @click=\"$parent.activeTab++\">Next</button>\n  </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
@@ -183,7 +183,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"tabs\">\n  <slot></slot>\n\n  <div class=\"carousel-pager\" v-if=\"carousel\">\n    <button @click=\"activeTab--\">Previous</button>\n    <button @click=\"activeTab++\">Next</button>\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"tabs\">\n  <slot></slot>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = _dereq_("vue-hot-reload-api")
   hotAPI.install(_dereq_("vue"), true)
