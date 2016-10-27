@@ -1,75 +1,91 @@
 <template>
-  <div class="tabs">
+  <!-- If rendering via passed JSON data. -->
+  <div v-if="data" class="tabs">
+    <hex-tab-list>
+      <hex-tab v-for="tab in tabs">{{ tab }}</hex-tab>
+    </hex-tab-list>
+
+    <hex-tab-panel-list>
+      <hex-tab-panel v-for="panel in panels">{{ panel }}</hex-tab-panel>
+    </hex-tab-panel-list>
+  </div>
+
+  <!-- If explicitly typing out all the markup. -->
+  <div v-else class="tabs">
     <slot></slot>
   </div>
 </template>
 
+
 <script>
+  import Components from './index';
+  // Just say no to recursive HexTabs.
+  delete Components.HexTabs;
+
   export default {
+    name: 'HexTabs',
+
+    components: Components,
+
     props: {
-      active: {
-        type:    Number,
-        default: 1,
-      },
-
-      carousel: Boolean,
-
-      // This gets used in `tabPanelId` in `tab.vue`.
-      tabPanels: {
-        type:     String,
-        required: true,
-      },
-
-      // This gets used in `tabId` in `tab.vue`.
-      tabs: {
-        type:     String,
-        required: true,
-      },
+      data: Array,
     },
+
 
     data() {
       return {
-        activeTab: this.active,
+        activeTab: 1,
       };
     },
 
-    watch: {
-      activeTab() {
-        this.activateTab(this.activeTab);
+
+    computed: {
+      tabs() {
+        return this.extractData('label');
       },
+
+      panels() {
+        return this.extractData('content');
+      }
     },
+
 
     methods: {
       /**
-       * Set the active tab.
+       * Set the index of a `HexTab` or `HexTabPanel`.
        *
-       * Don't call this method directly. Doing so would end up calling it twice.
-       * Instead, update `this.activeTab`.
+       * Only `HexTab.vue` and `HexTabPanel.vue` should call this.
        *
-       * @author Curtis Blackwell
-       * @param  {integer|string} i Tab's index.
-       * @return {integer}
+       * @param {Object} self Vue component object.
+       * @return {void}
        */
-      activateTab(i) {
-        i = parseInt(i);
-
-        // Loop through the children to find the tab list and get the last tab's index.
-        for (var j = 0; j < this.$children.length; j++) {
-          if (this.$children[j].$options.name === 'hex-tab-list' ||
-              this.$children[j].$options.name === 'hex-tab-panel-list'
-          ) {
-            var last = this.$children[j].$children.length;
-            break;
+      setIndex(self) {
+        self.$parent.$children.forEach((item, i) => {
+          if (item._uid === self._uid) {
+            self.index = i + 1;
           }
-        }
-        // Loops back to
-        // the first tab if the index is too high or
-        // the last  tab if the index is too low.
-        i = (i > last) ? 1    : i;
-        i = (i < 1)    ? last : i;
+        });
+      },
 
-        this.activeTab = i;
-      }
+      /**
+       * Extract data from JSON.
+       *
+       * This sets the data on tabs and panels.
+       *
+       * @param {String} key Key to pull from each index in `this.data`.
+       * @return {Array}
+       */
+      extractData(key) {
+        let items = [];
+
+        if (this.data) {
+          this.data.forEach((item, i) => {
+            items.push(item[key]);
+          });
+        }
+
+        return items;
+      },
     },
   }
 </script>
