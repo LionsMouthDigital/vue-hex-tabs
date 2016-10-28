@@ -64,5 +64,6 @@
       "url": "https://github.com/LionsMouthDigital/vue-hex-tabs.git"
     }
   ],
-  "license": "CC-BY-SA-4.0"
+  "license": "CC-BY-SA-4.0",
+  "version": "1.0.0-rc"
 }
