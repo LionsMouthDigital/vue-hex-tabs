@@ -1,5 +1,5 @@
 <template>
-  <li v-show="$parent.$parent.$refs[$parent.obeys].activeTab === index">
+  <li v-show="show">
     <slot></slot>
   </li>
 </template>
@@ -10,10 +10,24 @@
   export default {
     name: 'HexTabPanel',
 
-    data() {
-      return {
-        show: false,
-      };
+    computed: {
+      /**
+       * Figure out which component is the controller, `HexTabs` or `HexTabPanels`.
+       *
+       * This allows `HexTabPanels` to function without `HexTabs`.
+       */
+      controller() {
+        return typeof this.$parent.obeys !== 'undefined'
+          ? this.$parent.$parent.$refs[this.$parent.obeys]
+          : this.$parent;
+      },
+
+      /**
+       * Show the panel when appropriate.
+       */
+      show() {
+        return this.controller.activeTab === this.index;
+      },
     },
 
     mixins: [Indexable],

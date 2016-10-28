@@ -18,6 +18,22 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
       </hex-tab-panel>
     </hex-tab-panels>
+
+
+    <h2>Carousel</h2>
+    <hex-tab-panels ref="tabless-wonder">
+      <hex-tab-panel>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </hex-tab-panel>
+      <hex-tab-panel>
+        <p>Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+      </hex-tab-panel>
+      <hex-tab-panel>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+      </hex-tab-panel>
+    </hex-tab-panels>
+
+    <hex-tab-controls target="tabless-wonder"></hex-tab-controls>
   </div>
 </template>
 

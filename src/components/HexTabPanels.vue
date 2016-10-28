@@ -6,10 +6,22 @@
 
 <script>
   export default {
-    name: 'HexTabPanelList',
+    name: 'HexTabPanels',
 
     props: {
       obeys: String,
+    },
+
+    data() {
+      return {
+        activeTab: false,
+      };
+    },
+
+    created() {
+      if (typeof this.obeys === 'undefined') {
+        this.activeTab = 1;
+      }
     },
   }
 </script>
