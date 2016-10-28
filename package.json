@@ -1,8 +1,8 @@
 {
-  "name": "hex-tabs",
+  "name": "vue-hex-tabs",
+  "main": "src/HexTabs.vue",
   "description": "A Vue.js project",
-  "author": "Curtis Blackwell <curtis@lionsmouth.digital>",
-  "private": true,
+  "author": "Curtis Blackwell <blackwell.curtis@gmail.com>",
   "scripts": {
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js",
     "serve": "http-server -o -c 1 -a localhost",
@@ -17,7 +17,8 @@
     ]
   },
   "dependencies": {
-    "vue": "^2.0.1"
+    "vue": "^2.0.1",
+    "vue-hex-mixins": "1.0.0-alpha.1"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -62,5 +63,6 @@
       "type": "git",
       "url": "https://github.com/LionsMouthDigital/vue-hex-tabs.git"
     }
-  ]
+  ],
+  "license": "CC-BY-SA-4.0"
 }

@@ -1,18 +1,18 @@
 <template>
   <li
-    @click = "$parent.$parent.activeTab = index"
-    :class = "{ 'active': $parent.$parent.activeTab === index }"
+    @click = "$parent.activeTab = index"
+    :class = "{ 'active': $parent.activeTab === index }"
   >
     <slot></slot>
   </li>
 </template>
 
 <script>
+  import {Indexable} from 'vue-hex-mixins';
+
   export default {
     name: 'HexTab',
 
-    created() {
-      this.$parent.$parent.setIndex(this);
-    },
+    mixins: [Indexable],
   }
 </script>
