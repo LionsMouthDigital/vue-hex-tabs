@@ -12,7 +12,7 @@
 
     computed: {
       /**
-       * Figure out which component is the controller, `HexTabs` or `HexTabPanels`.
+       * Figure out which component sets the `activeTab`, `HexTabs` or `HexTabPanels`.
        *
        * This allows `HexTabPanels` to function without `HexTabs`.
        */
