@@ -1,6 +1,6 @@
 {
   "name": "vue-hex-tabs",
-  "main": "src/HexTabs.vue",
+  "main": "src/HexTabs.js",
   "description": "A Vue.js project",
   "author": "Curtis Blackwell <blackwell.curtis@gmail.com>",
   "scripts": {
