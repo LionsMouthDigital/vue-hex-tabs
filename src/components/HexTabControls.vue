@@ -5,6 +5,7 @@
   </div>
 </template>
 
+
 <script>
   export default {
     name: 'HexTabControls',
@@ -16,35 +17,35 @@
 
 
     computed: {
-      tabs() {
+      tabPanels() {
         return this.$parent.$refs[this.target];
       },
 
-      totalTabs() {
-        return this.tabs.$children.length;
+      totalTabPanels() {
+        return this.tabPanels.$children.length;
       },
     },
 
 
     methods: {
       /**
-       * Go to previous tab.
+       * Go to previous tab panel.
        */
       previousTab() {
-        let activeTab = this.tabs.activeTab - 1;
-        activeTab     = activeTab < 1 ? this.totalTabs : activeTab;
+        let activeTabPanel = this.tabPanels.activeTabPanel - 1;
+        activeTabPanel     = activeTabPanel < 1 ? this.totalTabPanels : activeTabPanel;
 
-        this.tabs.activeTab = activeTab;
+        HexBus.$emit('HexTabPanel:activated', this.tabPanels._uid, activeTabPanel);
       },
 
       /**
-       * Go to next tab.
+       * Go to next tab panel.
        */
       nextTab() {
-        let activeTab = this.tabs.activeTab + 1;
-        activeTab     = activeTab > this.totalTabs ? 1 : activeTab;
+        let activeTabPanel = this.tabPanels.activeTabPanel + 1;
+        activeTabPanel     = activeTabPanel > this.totalTabPanels ? 1 : activeTabPanel;
 
-        this.tabs.activeTab = activeTab;
+        HexBus.$emit('HexTabPanel:activated', this.tabPanels._uid, activeTabPanel);
       },
     }
   }

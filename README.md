@@ -1,4 +1,9 @@
 # hex-tabs
+Hex Tabs depend upon an event bus named `HexBus`. Create it like so:
+
+```js
+window.HexBus = new Vue();
+```
 
 > A Vue.js project
 

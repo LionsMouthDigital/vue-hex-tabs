@@ -4,24 +4,26 @@
   </ol>
 </template>
 
+
 <script>
   export default {
     name: 'HexTabPanels',
 
-    props: {
-      obeys: String,
-    },
 
     data() {
       return {
-        activeTab: false,
+        activeTabPanel: 1,
       };
     },
 
+
     created() {
-      if (typeof this.obeys === 'undefined') {
-        this.activeTab = 1;
-      }
+      HexBus.$on('HexTabPanel:activated', (uid, index) => {
+        // If this is the activated tab panel's parent, update `activeTabPanel`.
+        if (uid === this._uid) {
+          this.activeTabPanel = index;
+        }
+      });
     },
   }
 </script>
