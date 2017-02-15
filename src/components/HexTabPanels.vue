@@ -1,5 +1,9 @@
 <template>
-  <ol class="tab-panels">
+  <ol v-if="fixedHeight" class="tab-panels" :style="'height:' + height + 'px'">
+    <slot></slot>
+  </ol>
+
+  <ol v-else class="tab-panels">
     <slot></slot>
   </ol>
 </template>
@@ -10,9 +14,18 @@
     name: 'HexTabPanels',
 
 
+    props: {
+      fixedHeight: {
+        type:    Boolean,
+        default: true,
+      },
+    },
+
+
     data() {
       return {
-        activeTabPanel: 1,
+        activeTabPanel:  1,
+        height: 0,
       };
     },
 
@@ -22,6 +35,12 @@
         // If this is the activated tab panel's parent, update `activeTabPanel`.
         if (uid === this._uid) {
           this.activeTabPanel = index;
+        }
+      });
+
+      HexBus.$on('HexTabPanel:heightMeasured', (uid, height) => {
+        if (uid === this._uid) {
+          this.height = height > this.height ? height : this.height;
         }
       });
     },
