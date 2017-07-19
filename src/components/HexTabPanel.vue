@@ -27,9 +27,14 @@
     },
 
 
-    mounted() {
-      // Notify the parent of this tab panel's height if it's fixed.
-      if (this.$parent.fixedHeight) {
+    methods: {
+      /**
+       * Notify the parent of this tab panel's height.
+       *
+       * @author Curtis Blackwell
+       * @return {void}
+       */
+      emitHeight() {
         let style      = window.getComputedStyle(this.$el);
         let display    = style.display;
         let visibility = style.visibility;
@@ -43,6 +48,15 @@
         // Reset styles.
         this.$el.style.display    = display;
         this.$el.style.visibility = visibility;
+      },
+    },
+
+
+    mounted() {
+      if (this.$parent.fixedHeight) {
+        typeof this.$parent.fixedHeight === 'boolean'
+          ? this.emitHeight()
+          : setTimeout(this.emitHeight, this.$parent.fixedHeight.delay);
       }
     },
   }

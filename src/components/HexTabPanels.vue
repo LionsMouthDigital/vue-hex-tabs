@@ -15,8 +15,15 @@
 
 
     props: {
+      /**
+       * Set a fixed height for the tabs?
+       *
+       * Delay height setting by passing an object with `delay` property set to number of ms.
+       *
+       * @type {Boolean|Object}
+       */
       fixedHeight: {
-        type:    Boolean,
+        type:    [Boolean, Object],
         default: true,
       },
     },
